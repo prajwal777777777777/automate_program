@@ -1,7 +1,7 @@
 import PyPDF2,os;
 import pyinputplus as pypi;
 cracked_prompt="password cracked";
-dictionary_file=open("/home/prajwal/automate_additional/pdf_file/dictionary.txt");
+dictionary_file=open("/home/your_Path/automate_additional/pdf_file/dictionary.txt");
 password=dictionary_file.readlines();
 new_list=[]
 
@@ -11,14 +11,14 @@ for i in password:
 
 
 new_files=[]
-for directory,sub,files in os.walk("/home/prajwal/automate_additional/pdf_file"):
+for directory,sub,files in os.walk("/home/your_Path/automate_additional/pdf_file"):
     for fil in files:
         if(fil.endswith("_encrypted.pdf")):
             new_files.append(fil);
 
 
 for encrypted in new_files:
-    pdffile=open("/home/prajwal/automate_additional/pdf_file/"+encrypted,"rb");
+    pdffile=open("/home/your_Path/automate_additional/pdf_file/"+encrypted,"rb");
     pdfread=PyPDF2.PdfFileReader(pdffile);
     print(f"Preapring to crack password for {encrypted} file.")
     for i in new_list:
