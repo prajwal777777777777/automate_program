@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+from zipfile import ZipFile
+from pathlib import Path
+def function():
+        user_input=input("enter the absolute path of zip_file:")
+        wordlist=input("Enter the absolute path of wordlist:")
+        try:
+            wordlist_list=[]
+            with open(wordlist,"r") as w:
+                w=w.readlines()
+                for i in w:
+                    i=i.strip()
+                    wordlist_list.append(i)
+            with ZipFile(user_input,"r") as z:
+                tries=0
+                for i in wordlist_list:
+                    try:
+                        
+                        file_path=Path(user_input)
+                        z.extractall(file_path.parent,pwd=bytes(i,"utf-8"))
+                        print("-----------PASSWORD_FOUND=%s----------\nTRY=%s\nEXTRACTED_FILE_PATH=%s"%(i,str(tries),str(file_path.parent)))
+                        break;                
+                                                                       
+                    except:
+                        print("Trying password:%s"%i)
+                    tries+=1
+            
+
+        except:
+            print("file not found on that location or file can be already extracted at that location.")
+if __name__=="__main__":
+        function()
